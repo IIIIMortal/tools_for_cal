@@ -1,6 +1,5 @@
-function [x,u] = Tri_decomposition(A,rows)
-%UNTITLED 此处显示有关此函数的摘要
-%   此处显示详细说明
+function [L,u,x] = Tri_decomposition(A,rows)
+
 %这里是为了计算u_ij
     u=A;
     s = zeros(rows);%这里定义一个s用于放置列主元判断时的量
@@ -33,12 +32,19 @@ function [x,u] = Tri_decomposition(A,rows)
     end
     
     y = u(:,rows+1);
+    u = u(:,1:rows);
     x = zeros(rows,1);
     x(rows) = y(rows)/u(rows,rows);
     for i = rows-1:-1:1
         f_d = u(i,i+1:rows) * x((i+1):rows);
         x(i)=(y(i)-f_d)/u(i,i);
     end
+    L = zeros(rows);
+    for i = 1:rows
+        L(i+1:rows,i)=u(i+1:rows,i);
+    end
+    u = u-L;
+    L = L+diag(ones(1,rows));
     
 end
 
