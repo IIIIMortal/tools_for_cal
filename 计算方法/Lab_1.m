@@ -5,6 +5,6 @@ close all;
 r = input("输入方阵行数 : ");
 a = input("输入矩阵 :\n");
 
-result = Gaussian_eli(a,r);
-
+% result = Gaussian_eli(a,r);
+result = Tri_decomposition(a,r);
 disp(result);

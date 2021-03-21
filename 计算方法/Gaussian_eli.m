@@ -14,8 +14,8 @@ function x = Gaussian_eli(A,rows)
         end
 	%%如果变换之后仍然是首项为0，则该循环直接跳过，并且方程可能直接无解
         if abs(A(i-1, i-1) - 0)<0.01
-		continue;
-	end
+            continue;
+        end
 	%%
 
 	%找到主元之后，对每一行求系数以将最左列消去
