@@ -14,7 +14,7 @@ a = input("输入矩阵 :\n");
 % disp(u);
 %% Jacobi
 
-X = SOR(a,r,0.001,1);
+X = Gau_Seidel(a,r,0.001);
 disp(X);
 
 % result = Gaussian_eli(a,r);
