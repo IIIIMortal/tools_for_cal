@@ -6,11 +6,11 @@ function A = LS_Method(level,testset)
         c(:,cols) = testset(:,1).^(cols-1);
     end
     C = c'*c;
-    disp(C);
+%     disp(C);
     Y = c'*y;
-    disp(Y);
+%     disp(Y);
     all = [C,Y];
-    disp(all);
+%     disp(all);
     [~,~,A] = Tri_decomposition(all,level+1);
 
 end

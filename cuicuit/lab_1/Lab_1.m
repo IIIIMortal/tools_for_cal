@@ -3,7 +3,7 @@ clear;
 close all;
 
 c = 0:0.1:9;
-data = csvread('circuit_lab_1.csv');
+data = csvread('circuit_lab_2.csv');
 C = data(:,1);
 U = data(:,2);
 I = data(:,3);
@@ -12,7 +12,7 @@ lambda = data(:,5);
 
 a_uc = polyfit(C,U,2);
 a_pc = polyfit(C,P,1);
-a_ic = polyfit(C,I,2);
+a_ic = polyfit(C,I,2)
 a_i2c = polyfit(C,I.^2,2);
 a_lc = polyfit(C,lambda,2);
 a_i2c2 = polyfit(C,I.^2-0.1296,2);
@@ -27,7 +27,7 @@ title('C-U');
 xlabel('$$C/\mu F$$','interpreter', 'latex');
 ylabel('$$U/V$$','interpreter','latex');
 grid minor;
-saveas(p1,'CU.png');
+saveas(p1,'1CU.png');
 
 %%
 p2 = figure;
@@ -36,11 +36,11 @@ hold on;
 y = sprintf("I = %.2f C^2 + %.2f C + %.2f",a_ic(1),a_ic(2),a_ic(3));
 text(2,0.35,y);
 plot(c,a_ic(1)*c.^2+a_ic(2)*c+a_ic(3),'-r');
-title('C-I');
+title('C-W');
 xlabel('$$C /\mu F$$','interpreter', 'latex');
 ylabel('$$I/A$$','interpreter','latex');
 grid minor;
-saveas(p2,'CI.png');
+saveas(p2,'1CW.png');
 
 %%
 p0 = figure;
@@ -53,7 +53,7 @@ title('$$C-I^2$$','interpreter','latex');
 xlabel('$$C /\mu F$$','interpreter', 'latex');
 ylabel('$$I^2/A^2$$','interpreter','latex');
 grid minor;
-saveas(p0,'CI2.png');
+saveas(p0,'1CI2.png');
 
 %%
 p3 = figure;
@@ -66,20 +66,20 @@ title('C-P');
 xlabel('$$C /\mu F$$','interpreter', 'latex');
 ylabel('$$P/Watt$$','interpreter','latex');
 grid minor;
-saveas(p3,'CP.png');
+saveas(p3,'1CP.png');
 
 %%
 p4 = figure;
 plot(C,lambda,':g');
 hold on;
-y = sprintf("lambda = %.2f C^2 + %.2f C + %.2f",a_lc(1),a_lc(2),a_lc(3));
+y = sprintf("lambda = %.2f C^2 + %.2f C + %.2f",a_lc(1),a_lc(2),a_lc(3))
 text(2,0.5,y);
 plot(c,a_lc(1)*c.^2+a_lc(2)*c+a_lc(3),'-g');
 title('$$\cos\varphi-C$$','interpreter','latex');
 xlabel('$$C /\mu F$$','interpreter', 'latex');
 ylabel('$$\cos\varphi$$','interpreter','latex');
 grid minor;
-saveas(p4,'Cphi.png');
+saveas(p4,'1Cphi.png');
 
 
 

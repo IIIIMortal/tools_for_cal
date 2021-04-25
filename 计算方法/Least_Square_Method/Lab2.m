@@ -4,9 +4,15 @@ clear;
 addpath('../simplification_of_Matrix/');
 
 level = input("请输入你想要拟合的多项式阶数\n");
-TestSet = input("请根据[x_0,y_0;x_1,y_1;...;x_n,y_n]的格式输入用于拟合的点集\n");
+TestSet = input("请根据\n[ x_0, y_0;\n  x_1, y_1;\n  ..., ...;\n  x_n, y_n ]\n的格式输入用于拟合的点集\n");
+sizeofSet = size(TestSet);
+if sizeofSet(1)<=level
+    fprintf(' \n>> WARNING! 提供的点不足以拟合该阶曲线 <<\n\n');
+    return;
+end
 % disp(TestSet);
 A = LS_Method(level,TestSet);
+
 disp(A);
 
 %%
