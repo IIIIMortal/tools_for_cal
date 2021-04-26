@@ -1,5 +1,5 @@
 function x = Gaussian_eli(A,rows)
-
+%这里是默认系数矩阵为方阵
     i = 2;
     x = zeros(1,rows);
     m = zeros(1,rows);
@@ -26,7 +26,7 @@ function x = Gaussian_eli(A,rows)
         
         i = i+1;
     end
-    %%
+    %%这里就是将x求解出来
     x(rows)=A(rows,rows+1)/A(rows,rows);
     for k = rows-1:-1:1
         former_add = sum(x.*A(k,1:rows));

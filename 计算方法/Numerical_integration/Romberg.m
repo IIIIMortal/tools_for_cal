@@ -1,10 +1,10 @@
-function result = Romberg(y,bound,epsilon)
+function result = Romberg(y,bound,epsilon,k)
     new_rows = zeros(1,4);
     Sequence = new_rows;
     Sequence(1,1) = sum(y(bound))/2;
     i = 1;
     step_size = bound(2)-bound(1);%初始化步长
-    while true
+    while i<=k
         for j = 2:min(i,4)%因为龙贝格算法只考虑到龙贝格序列，因此只有四列
             Sequence(i,j) = (4^(j-1)*Sequence(i,j-1)-Sequence(i-1,j-1))/(4^(j-1)-1);
             if i>j && abs(Sequence(i,j)-Sequence(i-1,j)) < epsilon  
@@ -21,6 +21,7 @@ function result = Romberg(y,bound,epsilon)
         %更新新的梯形序列
         [Sequence(i,1),step_size] = StepSizeVaried(y,bound,step_size,Sequence(i-1,1));
     end
-
+    result = -1;
+    disp("Fail");
 end
 

@@ -3,7 +3,7 @@ function [L,u,x] = Tri_decomposition(A,rows)
 %这里是为了计算u_ij
     u=A;
     s = zeros(rows);%这里定义一个s用于放置列主元判断时的量
-    
+    p = diag(ones(1,rows));
     for k=1:rows
        %%这个部分是（列主元）用的，如果不需要列主元，只是单纯的三角分解，就可以跳过这一部分（8~24行）
         s(k:rows,k) = u(k:rows,k);%赋值，在s中判断
@@ -17,6 +17,7 @@ function [L,u,x] = Tri_decomposition(A,rows)
         if max_u_r ~= k%如果和当前不同就交换
             u([max_u_r k],:)=u([k max_u_r],:);
             A([max_u_r k],:)=A([k max_u_r],:);
+            p([max_u_r k],:)=p([k max_u_r],:);
         end
 
 %         clear s_i;
@@ -46,6 +47,6 @@ function [L,u,x] = Tri_decomposition(A,rows)
     end
     u = u-L;
     L = L+diag(ones(1,rows));
-    
+    disp(p);
 end
 

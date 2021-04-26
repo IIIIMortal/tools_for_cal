@@ -26,6 +26,6 @@ end
     X = a * (Trans * X + b);
     del = max(abs(X-fX));
 %     disp(X);
- end
+end
  
 
