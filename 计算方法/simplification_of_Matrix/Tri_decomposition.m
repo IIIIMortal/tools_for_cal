@@ -47,6 +47,6 @@ function [L,u,x] = Tri_decomposition(A,rows)
     end
     u = u-L;
     L = L+diag(ones(1,rows));
-    disp(p);
+%     disp(p);
 end
 

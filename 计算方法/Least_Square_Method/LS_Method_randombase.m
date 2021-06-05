@@ -1,4 +1,4 @@
-function A = LS_Method_randombase(y_handle,rank,testset)
+function [A,flag] = LS_Method_randombase(y_handle,rank,testset)
 %rank是函数族的数量
     sizeofSet = size(testset);
 %     提取出测试点集的y
@@ -11,7 +11,9 @@ function A = LS_Method_randombase(y_handle,rank,testset)
     for rows = 1:sizeofSet(1)
         c(rows,:) = y_handle(testset(rows,1));
     end
-    disp(c);
+%     disp(c);
+    flag = test_linear(c,sizeofSet(1));
+% %     disp(flag);
     C = c'*c;
 %      disp(C);
     Y = c'*y;
