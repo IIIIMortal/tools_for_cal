@@ -71,8 +71,32 @@ ylabel('Angle(x(n))');
 
 %%
 % draw drifting
-x
+figure(3)
 
+n3 = -10:10;
+subplot(311);
+x31 = 2*Del(0,-10,10)+1*Del(2,-10,10)-1*Del(3,-10,10)+3*Del(4,-10,10);
+stem(n3,x31,'.');
+title('x(n)');
+xlabel('n');
+ylabel('x(n)');
+grid minor;
+
+subplot(312);
+x32 = x31;
+stem(n3-3,x32,'.');
+title('x(n-3)');
+xlabel('n');
+ylabel('x(n-3)');
+grid minor;
+
+subplot(313);
+x33 = 2*Del(0,-10,10)+1*Del(-2,-10,10)-1*Del(-3,-10,10)+3*Del(-4,-10,10);
+stem(n3,x33,'.');
+title('x(-n)');
+xlabel('n');
+ylabel('x(-n)');
+grid minor;
 %%
 % conv calculating
 
@@ -85,3 +109,53 @@ disp(x4r);
 title('卷积结果');
 xlabel('n');
 ylabel('result');
+grid minor;
+
+%%
+% question 5: 单位脉冲响应 y[n]+4y[n-1]+2y[n-2]+y[n-3] = x[n]
+
+y5 = [1,4,2,1];
+x5 = 1;
+n5 = -20:20;
+
+h = impz(y5,x5,n5);
+figure(5);
+stem(n5,h,'.');
+title('单位脉冲响应');
+xlabel('k');
+ylabel('h(k)');
+grid minor;
+
+%%
+% ztrans
+
+syms n;
+X = ztrans(cos(n)*heaviside(n))
+syms z;
+x = iztrans(1/((1+z)*(2+z)))
+
+
+%% 
+% question 7
+num7 = [0,2,1];
+den7 = [1,2,1];
+figure(7);
+zplane(num7,den7);
+
+[h,t] = impz(num7,den7);
+figure(8);
+subplot(211);
+stem(t,h,'.');
+title('单位脉冲响应h(n)');
+xlabel('n');
+ylabel('h(n)');
+grid minor;
+
+subplot(212);
+[H,w] = freqz(num7,den7);
+semilogy(w/pi,abs(H),'.');
+title('频率响应H(w)');
+xlabel(' Frequency \omega/\pi');
+ylabel('H(w)');
+grid minor;
+
